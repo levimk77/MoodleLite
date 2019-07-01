@@ -9,9 +9,10 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = Post.new(course_params)
-        if @post.save?
-            redirect_to course_path(@post)
+        @post = Post.new(post_params)
+        @post.student = current_user
+        if @post.save
+            redirect_to post_path(@post)
         else
             flash[:error] = @post.errors.full_messages
             render :new
@@ -31,6 +32,6 @@ class PostsController < ApplicationController
 
     private
     def post_params
-        params.require(:post).permit(:title, :content, :student_id, :course_id)
+        params.require(:post).permit(:title, :content, :course_id)
     end
 end

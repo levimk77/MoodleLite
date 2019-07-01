@@ -1,0 +1,17 @@
+<%= form_for(@student) do |x| %>
+    <%= x.label "Name:" %>
+    <%= x.text_field :name %>
+    <%= x.label "Age:" %>
+    <%= x.number_field :age %>
+    <%= x.label "Email:" %>
+    <%= x.email_field :email %>
+    <%= x.label "Grade:" %>
+    <%= x.select :year, $years %>
+    <%= x.label "Major:" %>
+    <%= x.select :major, $majors %>
+    <%= x.label "Password:" %>
+    <%= x.password_field :password %>
+    <%= x.label "Confirm Password:" %>
+    <%= x.password_field :password_confirmation %>
+    <%= submit_tag "Sign Up" %>
+<% end %>

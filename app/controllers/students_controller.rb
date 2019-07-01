@@ -1,4 +1,7 @@
 class StudentsController < ApplicationController
+    $majors =  ["English", "Math", "Accounting", "Physics", "Biology", "Finance", "Economics", "Chemistry", "Film Studies", "Fashion Design", "Anthropology", "History", "Art History", "Engineering", "Geography", "Philosophy", "Meteorology", "Social Work", "Political Science", "Music Education"]
+    $years = ["Freshman", "Sohpomore", "Junior", "Senior"]
+   
     def index
     end
 
@@ -11,9 +14,10 @@ class StudentsController < ApplicationController
     end
 
     def create
-        @student = Student.new(course_params)
-        if @student.save?
-            redirect_to course_path(@student)
+        @student = Student.new(student_params)
+        if @student.save
+            session[:student_id] = @student.id
+            redirect_to student_path(@student)
         else
             flash[:error] = @student.errors.full_messages
             render :new
@@ -33,6 +37,6 @@ class StudentsController < ApplicationController
 
     private
     def student_params
-        params.require(:student).permit(:name, :age, :email, :year, :major)
+        params.require(:student).permit(:name, :age, :email, :year, :major, :password, :password_confirmation)
     end
 end

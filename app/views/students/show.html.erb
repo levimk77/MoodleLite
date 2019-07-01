@@ -1,0 +1,18 @@
+<div>
+<h1><%= @student.name %></h1>
+<h2><%= @student.email %></h2>
+<h2><%= @student.major %></h2>
+<h2><%= @student.age %></h2>
+</div>
+
+<div>
+<% @student.courses.each do |x| %>
+    <%= link_to x.name course_path(x) %>
+    <% end %>
+</div>
+
+<div>
+<% @student.posts do |x| %>
+    <%= link_to x.title post_path(x) %>
+    <% end %>
+</div>

@@ -1,0 +1,12 @@
+<h1>Creating a new course</h1>
+<%= form_for @course do |f| %>
+    <%= f.label :code %>
+    <%= f.text_field :code %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :teacher %>
+    <%= f.text_field :teacher %>
+    <%= f.label :department %>
+    <%= f.text_field :department %>
+    <%= f.submit %>
+    <% end %>

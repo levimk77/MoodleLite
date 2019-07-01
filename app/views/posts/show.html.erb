@@ -1,0 +1,15 @@
+<h1><%= @post.title %></h1>
+<%= @post.content %>
+<h3>Replies</h3>
+<% @post.responses.each do |res| %>
+    <%= res.student.name %>
+    <%= res.content %>
+    <% end %>
+    <br>
+    <%= form_for @response do |f| %>
+        <% f.hidden_field :post_id, :value => @post.id %>
+        <% f.hidden_field :student_id, :value => @post.student_id %>
+        <%= f.text_area :content %>
+        <%= f.submit "Reply" %>
+        <% end %>
+    

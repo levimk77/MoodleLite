@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
 
     def create
         @course = Course.new(course_params)
-        if @course.save?
+        if @course.save
             redirect_to course_path(@course)
         else
             flash[:error] = @course.errors.full_messages

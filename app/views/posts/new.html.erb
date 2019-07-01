@@ -1,0 +1,13 @@
+<h1>New post</h1>
+<%= form_for @post do |f| %>
+    <div>
+    <%= f.hidden_field :course_id, :value => params[:id] %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    </div>
+    <div>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    </div>
+    <%= f.submit %>
+    <% end %>
