@@ -6,7 +6,9 @@
 <%= form_tag "/courses/#{@course.id}/posts/new", method: :get %>
 <%= submit_tag "New Post"%>
 <br>
-<h3>All post</h3>
+<h3>All posts:</h3>
+<ul>
 <% @course.posts.each do |post| %>
-    <%= link_to post.title post_path(path) %>
+    <li><%= link_to post.title, post_path(post) %></li>
     <% end %>
+    </ul>

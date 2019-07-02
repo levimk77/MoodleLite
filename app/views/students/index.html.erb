@@ -1,0 +1,29 @@
+<h1>All students</h1>
+<% if current_user.admin %>
+    <% @students.each do |x| %>
+    <%= link_to x.name, student_path(x) %>
+
+    <% if x.admin == false %>
+        <%= form_tag "/students/#{x.id}/admin", method: :patch do%>
+        <%= submit_tag "Set as admin" %>
+        <% end %>
+    <% else %>
+        <%= form_tag "/students/#{x.id}/unadmin", method: :patch do%>
+        <%= submit_tag "Remove admin" %>
+        <% end %>
+    <% end %>
+
+    <% if x.banned == false %>
+        <%= form_tag "/students/#{x.id}/ban", method: :patch do %>
+        <%= submit_tag "Ban this student" %>
+        <% end %>
+    <% else %>
+        <%= form_tag "/students/#{x.id}/unban", method: :patch do %>
+        <%= submit_tag "Unban this student" %>
+        <% end %>
+    <% end %>
+    <% end %>
+
+<% else %>
+    You don't have access to this page.
+<% end %>

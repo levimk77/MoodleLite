@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
     $years = ["Freshman", "Sohpomore", "Junior", "Senior"]
    
     def index
+        @students = Student.all
     end
 
     def show
@@ -29,10 +30,49 @@ class StudentsController < ApplicationController
     end
 
     def update
+        @student = Student.find(params[:id])
+        @student.assign_attributes(student_params)
+        if @student.valid?
+        @student.save
+        redirect_to student_path(@student)
+        else 
+         flash[:error] = @student.errors.full_messages
+            render :edit
+        end
     end
 
     def destroy
+        session.delete(:student_id)
         @student = Student.find(params[:id]).destroy
+        redirect_to "/login"
+    end
+
+    def admin
+        @student = Student.find(params[:id])
+        @student.admin = true
+        @student.save
+        redirect_to students_path
+    end
+
+    def unadmin
+        @student = Student.find(params[:id])
+        @student.admin = false
+        @student.save
+        redirect_to students_path
+    end
+
+    def banned
+        @student = Student.find(params[:id])
+        @student.banned = true
+        @student.save
+        redirect_to students_path
+    end
+
+    def unbanned
+        @student = Student.find(params[:id])
+        @student.banned = false
+        @student.save
+        redirect_to students_path
     end
 
     private

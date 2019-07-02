@@ -1,4 +1,12 @@
+ <% if current_user.admin == false %>
+    You don't have access to this page.
+    <% else %>
 <h1>Creating a new course</h1>
+<% if flash[:error] %>
+    <% flash[:error].each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+    <% end %>
 <%= form_for @course do |f| %>
     <%= f.label :code %>
     <%= f.text_field :code %>
@@ -9,4 +17,11 @@
     <%= f.label :department %>
     <%= f.text_field :department %>
     <%= f.submit %>
+    <% end %>
+
+<h1>Remove existing courses</h1>
+<%= form_for @course, :method => :delete do |f| %>
+    <%= f.collection_check_boxes :id , @courses , :id, :code %>
+    <%= f.submit "Delete Courses"%>
+    <% end %>
     <% end %>

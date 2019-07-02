@@ -4,15 +4,39 @@
 <h2><%= @student.major %></h2>
 <h2><%= @student.age %></h2>
 </div>
+<br>
 
+<h3>Courses</h3>
+<%= form_tag "/courses", method: :get do %>
+<%= submit_tag "Add course" %>
+<% end %>
 <div>
+<ul>
 <% @student.courses.each do |x| %>
-    <%= link_to x.name course_path(x) %>
+    <li><%= link_to x.name, course_path(x) %>
+     <%= form_tag "/enrollments", method: :delete do%> 
+     <%= hidden_field_tag :course_id, :value => x.id %>
+    <%= submit_tag "Remove Course" %> <% end %></li>
     <% end %>
+</ul>
+</div>
+<br>
+<h3>Posts</h3>
+<div>
+<ul>
+<% @student.posts.each do |x| %>
+    <li><%= link_to x.title, post_path(x) %></li>
+    <% end %>
+    </ul>
 </div>
 
-<div>
-<% @student.posts do |x| %>
-    <%= link_to x.title post_path(x) %>
-    <% end %>
-</div>
+<br>
+
+<h3>Responses</h3>
+<ul>
+
+<% @student.responses.each do |x| %>
+<li>Replied to <%= link_to x.post.title, post_path(x.post) %>: <%= x.content %></li>
+<% end %>
+
+</ul>

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     def create
         student = Student.find_by(email: params[:email])
         if student && student.authenticate(params[:password])
-            session[:student_id] = student.student_id
+            session[:student_id] = student.id
             redirect_to student_path(student)
         else
             render 'new'
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        session.delete :student_id
+        session.delete(:student_id)
         redirect_to "/login"
     end
 

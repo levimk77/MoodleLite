@@ -1,7 +1,15 @@
+<% if logged_in? %>
+<h1> You are already logged in! <h1>
+<% else %>
 <%= form_tag "/sessions" do %>
     <%= label_tag :email %>
     <%= text_field_tag :email %>
     <%= label_tag :password %>
     <%= password_field_tag :password %>
     <%= submit_tag "Log in" %>
-<% end %>
+    <% end %>
+    
+    <%= form_tag "/signup", method: :get do %>
+    <%= submit_tag "Sign Up" %>
+    <% end %>
+    <% end %>

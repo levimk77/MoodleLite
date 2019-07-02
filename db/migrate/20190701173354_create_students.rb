@@ -6,7 +6,7 @@ class CreateStudents < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :year
       t.string :major
-      t.boolean :admin
+      t.boolean :admin, :default => false
 
       t.timestamps
     end

@@ -1,5 +1,31 @@
 <!DOCTYPE html>
 <html>
+
+<% if logged_in? %>
+  <% if current_user.banned == true %>
+    <h1>You are banned</h1>
+  <% else %>
+    <%= form_tag "/students/#{current_user.id}", method: :GET do %>
+    <%= submit_tag "Home"%>
+    <% end %>
+    <%= form_tag "/students/#{current_user.id}/edit", method: :GET do %>
+    <%= submit_tag "Settings"%>
+    <% end %>
+    <%= form_tag "/logout", method: :delete do %>
+    <%= submit_tag "Logout"%>
+    <% end %>
+
+      <% if current_user.admin == true %>
+      <%= form_tag "/students", method: :get do %>
+        <%= submit_tag "See all students" %>
+        <% end %>
+        
+      <%= form_tag "/courses/new", method: :get do %>
+        <%= submit_tag "Edit courses" %>
+        <% end %>
+        <% end %>
+  <% end %>
+<% end %>
   <head>
     <title>MoodleLite</title>
     <%= csrf_meta_tags %>

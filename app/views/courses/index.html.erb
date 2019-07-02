@@ -1,0 +1,9 @@
+<h1>All courses</h1>
+<% @courses.each do |course| %>
+    <%= link_to "#{course.code} #{course.name}", course_path(course) %>
+    <% if !current_user.courses.include?(course) %>
+        <%= form_tag "/enrollments", method: :post %>
+        <%= hidden_field_tag :course_id, :value => course.id %>
+        <%= submit_tag "Add to my courses" %>
+        <% end %>
+    <% end %>

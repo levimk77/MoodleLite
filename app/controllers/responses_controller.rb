@@ -11,12 +11,12 @@ class ResponsesController < ApplicationController
     end
 
     def create
-        @response = Response.new(course_params)
-        if @response.save?
-            redirect_to course_path(@response)
+        @response = Response.new(response_params)
+        if @response.save
+            redirect_to post_path(@response.post)
         else
             flash[:error] = @response.errors.full_messages
-            render :new
+            redirect_to post_path(@response.post)
         end
     end
 
@@ -29,6 +29,7 @@ class ResponsesController < ApplicationController
 
     def destroy
         @response = Response.find(params[:id]).destroy
+        redirect_to post_path(@response.post)
     end
 
     private

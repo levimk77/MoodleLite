@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_01_185903) do
+ActiveRecord::Schema.define(version: 2019_07_02_172131) do
 
   create_table "courses", force: :cascade do |t|
     t.string "code"
     t.string "name"
     t.string "teacher"
     t.string "department"
-    t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,10 +51,11 @@ ActiveRecord::Schema.define(version: 2019_07_01_185903) do
     t.string "email"
     t.string "year"
     t.string "major"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.boolean "banned", default: false
   end
 
 end

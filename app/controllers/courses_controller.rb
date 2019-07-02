@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
     def index
+        @courses = Course.all
     end
 
     def show
@@ -8,12 +9,15 @@ class CoursesController < ApplicationController
 
     def new
         @course = Course.new
+        @courses = Course.all
+        @student = current_user
     end
 
     def create
         @course = Course.new(course_params)
+        @courses = Course.all
         if @course.save
-            redirect_to course_path(@course)
+            redirect_to new_course_path
         else
             flash[:error] = @course.errors.full_messages
             render :new
@@ -28,7 +32,13 @@ class CoursesController < ApplicationController
     end
 
     def destroy
-        @course = Course.find(params[:id]).destroy
+        params[:course][:id].each do |x|
+            if x!= "" 
+             Course.find(x.to_i).enrollments.destroy_all
+             Course.find(x.to_i).destroy
+            end
+        end
+        redirect_to new_course_path
     end
 
     private

@@ -1,58 +1,42 @@
-<%= form_tag "/courses/#{@post.course_id}", method: :get do %>
-<%= submit_tag "Back to #{@post.course.code}" %>
-<% end %>
-<br>
-
 <h1><%= @post.title %></h1>
-
-
+<% if flash[:error] %>
+    <% flash[:error].each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+    <% end %>
 <% if @post.student != nil %>
 Author: <%= @post.student.name %><br>
 <% else %>
 Author: This user no longer exists. <br>
 <% end %>
 Created at: <%= @post.created_at %><br>
-Content: <%= @post.content %><br>
-<br>
+Content: <%= form_for(@post) do |x|%>
+    <%= x.text_area :content, :value => @post.content %>
+    <%= x.submit "Submit" %>
+    <% end %>
+    <br>
 
 <% if @post.student == current_user %>
-<%= form_tag "/posts/#{@post.id}/edit", method: :get do %>
+<%= form_tag "/posts/#{@post.id}/edit", method: :patch do %>
   <%= submit_tag "Edit Post"%>
   <% end %>
 <% end %>
-<% if current_user.admin == true %>
-<%= form_for(@post, :method => :delete) do |x| %>
-  <%= x.submit "Delete" %>
-  <% end %>
-  <% end %>
 
 
 
 
 <h3>Replies</h3>
 <ul>
-<% if @post.responses != nil %>
 <% @post.responses.each do |res| %>
   <li>  <%= res.student.name %>:
     <%= res.content %> </li>
-    <% if current_user.admin == true %>
-    <%= form_for(res, :method => :delete) do |x| %>
-    <%= x.submit "Delete" %>
-    <% end %>
-    <% end %>
     <% end %>
     <br>
     <ul>
-    <% if flash[:error] %>
-    <% flash[:error].each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-    <% end %>
     <%= form_for @response do |f| %>
         <%= f.hidden_field :post_id, :value => params[:id] %>
         <%= f.hidden_field :student_id, :value => @post.student_id %>
         <%= f.text_area :content %>
         <%= f.submit "Reply" %>
         <% end %>
-  <% end %>
     
