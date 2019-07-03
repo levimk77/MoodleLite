@@ -1,42 +1,51 @@
-<div>
-<h1><%= @student.name %></h1>
-<h2><%= @student.email %></h2>
-<h2><%= @student.major %></h2>
-<h2><%= @student.age %></h2>
-</div>
+ <div class = "grid-container">
+ <div class = "boxes">
+    <div class="box1">
+    <h1><%= @student.name %></h1>
+    <h3>User details</h3>
+    <p>Email: <%= @student.email %></p>
+    <p>Major: <%= @student.major %></p>
+    <p>Age: <%= @student.age %></p>
+    </div>
 <br>
 
-<h3>Courses</h3>
-<%= form_tag "/courses", method: :get do %>
-<%= submit_tag "Add course" %>
-<% end %>
-<div>
-<ul>
-<% @student.courses.each do |x| %>
-    <li><%= link_to x.name, course_path(x) %>
-     <%= form_tag "/enrollments", method: :delete do%> 
-     <%= hidden_field_tag :course_id, :value => x.id %>
-    <%= submit_tag "Remove Course" %> <% end %></li>
+    <div class="box2">
+    <div style = "display: inline; width: 200px;">
+    <h3 style = "display: inline; padding: 6px; font-size: 20px ">Courses</h3>
+    <div style = "display: inline-block;">
+    <%= form_tag "/courses", method: :get do %>
+    <%= submit_tag "Add course", class: "sub-button2" %>
+        </div>
     <% end %>
-</ul>
-</div>
-<br>
-<h3>Posts</h3>
-<div>
-<ul>
-<% @student.posts.each do |x| %>
-    <li><%= link_to x.title, post_path(x) %></li>
-    <% end %>
+    </div>
+    <ul>
+    <% @student.courses.sort_by { |c| c.code }.each do |x| %>
+        <li><%= link_to "#{x.code} #{x.name}", course_path(x) %>
+        <%= form_tag "/enrollments", method: :delete do%> 
+        <%= hidden_field_tag :course_id, :value => x.id %>
+        <%= submit_tag "Remove", class:"sub-button" %> <% end %></li>
+        <% end %>
     </ul>
-</div>
-
+    </div>
 <br>
+</div>
+<div class ="boxes2">
+<div class = "box3">
+<h3>Posts</h3>
 
-<h3>Responses</h3>
-<ul>
-
-<% @student.responses.each do |x| %>
-<li>Replied to <%= link_to x.post.title, post_path(x.post) %>: <%= x.content %></li>
+<% @student.posts.sort_by{|post| post.created_at }.each do |x| %>
+<li style = "list-style: none; font-size 1.0em; padding: 1px;"><%= link_to x.title, post_path(x) %></li>
 <% end %>
 
-</ul>
+</div>
+
+
+<div class = "box4">
+<h3>Responses</h3>
+<% @student.responses.sort_by{|response| response.created_at }.each do |x| %>
+<li style = "list-style-type: circle; padding: 2px;">Replied to <%= link_to x.post.title, post_path(x.post) %>: <%= x.content %></li>
+<% end %>
+</div>
+</div>
+
+</div>

@@ -27,6 +27,21 @@ class PostsController < ApplicationController
         render :edit
     end
 
+    def edit2
+        @post = Post.find(params[:id1])
+        @response = Response.new
+        render :edit2
+    end
+
+    def update_response
+        @post = Post.find(params[:id1])
+        @response = Response.find(params[:id2].to_i)
+        @response.update(content: params["content"])
+        @response.save
+        redirect_to post_path(@post)
+    end
+
+
     def update
         @post = Post.find(params[:id])
         @post.assign_attributes(post_params)

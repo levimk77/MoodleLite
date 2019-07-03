@@ -1,9 +1,15 @@
 <% if flash[:error] %>
+<div class="errors">
+<ul>
 <% flash[:error].each do |msg| %>
     <li><%= msg %></li>
     <% end %>
+    </ul>
+    </div>
     <% end %>
+
 <br>
+<div class = "form">
 <%= form_for(@student) do |x| %>
     <%= x.label "Name:" %>
     <%= x.text_field :name %>
@@ -15,9 +21,11 @@
     <%= x.select :year, $years %>
     <%= x.label "Major:" %>
     <%= x.select :major, $majors %>
+    <br>
     <%= x.label "Password:" %>
     <%= x.password_field :password %>
     <%= x.label "Confirm Password:" %>
     <%= x.password_field :password_confirmation %>
-    <%= submit_tag "Sign Up" %>
+   <%= submit_tag "Sign Up", class: "button" %>
 <% end %>
+</div>

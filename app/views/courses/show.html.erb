@@ -1,14 +1,15 @@
 <h1><%= @course.code %> <%= @course.name %></h1>
-<h3>Teacher: <%= @course.teacher %>
-<h3>Department: <%= @course.department %>
-<br>
-<br>
+<h3>Teacher: <%= @course.teacher %></h3>
+<h3>Department: <%= @course.department %></h3>
+
+<div class = "form">
 <%= form_tag "/courses/#{@course.id}/posts/new", method: :get %>
-<%= submit_tag "New Post"%>
+<%= submit_tag "New Post", class: "button"%>
+</div>
 <br>
 <h3>All posts:</h3>
 <ul>
 <% @course.posts.each do |post| %>
-    <li><%= link_to post.title, post_path(post) %></li>
+    <div class = "link"><li><%= link_to post.title, post_path(post) %></li><div>
     <% end %>
     </ul>

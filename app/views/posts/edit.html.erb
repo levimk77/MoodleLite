@@ -1,42 +1,82 @@
+<%= form_tag "/courses/#{@post.course_id}", method: :get do %>
+<%= submit_tag "Back to #{@post.course.code}", class: "button" %>
+<% end %>
+<% if @post.student == current_user %>
+<%= form_tag "/posts/#{@post.id}/edit", method: :get do %>
+  <%= submit_tag "Edit Post", class: "button" %>
+  <% end %>
+<% end %>
+<% if current_user.admin == true %>
+<div class = "form">
+<%= form_for(@post, :method => :delete) do |x| %>
+  <div class = "button"><%= x.submit "Delete" %></div>
+  <% end %></div>
+  <% end %>
+<br>
 <h1><%= @post.title %></h1>
+<div class = "errors">
 <% if flash[:error] %>
     <% flash[:error].each do |msg| %>
     <li><%= msg %></li>
     <% end %>
     <% end %>
+    </div>
+
+
 <% if @post.student != nil %>
-Author: <%= @post.student.name %><br>
+<p><b>Author</b>: <%= @post.student.name %></p>
 <% else %>
-Author: This user no longer exists. <br>
+<p><b>Author</b>: This user no longer exists.</p>
 <% end %>
-Created at: <%= @post.created_at %><br>
-Content: <%= form_for(@post) do |x|%>
+<p><b>Created at</b>: <%= @post.created_at %></p>
+<p><b>Content</b>: </p>
+    <div class = "form">
+    <%= form_for(@post) do |x|%>
     <%= x.text_area :content, :value => @post.content %>
-    <%= x.submit "Submit" %>
+    <%= x.submit "Submit", :class => "button" %>
     <% end %>
+    </div>
     <br>
 
-<% if @post.student == current_user %>
-<%= form_tag "/posts/#{@post.id}/edit", method: :patch do %>
-  <%= submit_tag "Edit Post"%>
-  <% end %>
-<% end %>
 
-
-
-
-<h3>Replies</h3>
+<h3><b>Replies</b></h3>
 <ul>
-<% @post.responses.each do |res| %>
-  <li>  <%= res.student.name %>:
-    <%= res.content %> </li>
+<% if @post.responses != nil %>
+  <% @post.responses.each do |res| %>
+    <% if res.student != nil %>
+    <li><%= res.student.name %>:
+    <% else %>
+    <li>Deleted User:
     <% end %>
+    <%= res.content %> </li>
+  
+
+    <% if current_user.admin == true %>
+      <%= form_for(res, :method => :delete) do |x| %>
+      <%= x.submit "Delete", :class => "inner"%>
+    <% end %>
+  <% end %>
+  <% end %>
+  </ul>
+
+
     <br>
     <ul>
+    <% if flash[:error] %>
+    <% flash[:error].each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+    <% end %>
+    </ul>
+    
+
+    
+ <h3>New reply:<h3>
     <%= form_for @response do |f| %>
         <%= f.hidden_field :post_id, :value => params[:id] %>
-        <%= f.hidden_field :student_id, :value => @post.student_id %>
+        <%= f.hidden_field :student_id, :value => current_user.id %>
         <%= f.text_area :content %>
-        <%= f.submit "Reply" %>
+        <%= f.submit "Reply", class:"button" %>
         <% end %>
+  <% end %>
     

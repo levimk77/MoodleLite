@@ -1,9 +1,14 @@
 <h1>Settings</h1>
 <% if flash[:error] %>
+<div class="errors">
+
 <% flash[:error].each do |msg| %>
-    <li><%= msg %></li>
+    <li style= "list-style: none;" ><%= msg %></li>
     <% end %>
+    </div>
     <% end %>
+    <div class = "form">
+    <br>
 <%= form_for @student do |x| %>
     <%= x.label "Name:" %>
     <%= x.text_field :name %>
@@ -15,9 +20,11 @@
     <%= x.select :year, $years %>
     <%= x.label "Major:" %>
     <%= x.select :major, $majors %>
-    <%= x.submit %>
+    <%= x.submit "Update Student", :class => "button" %>
     <% end %>
-
+    </div>
+    <div class = "form">
     <%= form_for(@student, :method => :delete) do |f| %>
-        <%= f.submit "Delete account" %>
+        <%= f.submit "Delete account", :class => "button", data: { confirm: "Are you sure you want to delete your account?" } %>
         <% end %>
+        </div>

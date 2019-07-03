@@ -13,10 +13,7 @@
   <% end %></div>
   <% end %>
 <br>
-
 <h1><%= @post.title %></h1>
-
-
 <% if @post.student != nil %>
 <p><b>Author</b>: <%= @post.student.name %><p>
 <% else %>
@@ -24,35 +21,44 @@
 <% end %>
 <p><b>Created at</b>: <%= @post.created_at %></p>
 <p><b>Content</b>:<br> <%= @post.content %></p><br>
-
 <h3><b>Replies</b></h3>
 <ul>
 <% if @post.responses != nil %>
   <% @post.responses.each do |res| %>
+    
     <% if res.student != nil %>
     <li><%= res.student.name %>:
     <% else %>
     <li>Deleted User:
     <% end %>
     <br>
+    <% if params[:id2].to_i == res.id %>
+        
+        <%= form_tag("/posts/#{@post.id}/edit2/#{res.id}", method: :patch) do %>
+        <%= hidden_field_tag :student_id, :value => current_user.id %>
+        <%= text_area_tag :content, res.content %>
+        <%= submit_tag "Submit", class:"sub-button" %>
+        
+        <% end %>
+
+    <% else %>
+
     <%= res.content %> </li>
     <br>
     <% if res.student == current_user %>
-    <%= form_tag "/posts/#{@post.id}/edit2/#{res.id}", method: :get do %>
-  <%= submit_tag "Edit Reply", class: "sub-button" %>
-  <% end %>
-<% end %>
-  
-
-    <% if current_user.admin == true %>
-      <%= form_for(res, :method => :delete) do |x| %>
-      <%= x.submit "Delete", :class => "inner"%>
+    <%= form_tag "/posts/#{@post.id}/edit", method: :get do %>
+    <%= submit_tag "Edit Reply", class: "sub-button" %>
     <% end %>
-  <% end %>
-  <% end %>
-  </ul>
+    <% end %>
 
-
+    <% end %>
+<% if current_user.admin == true %>
+    <%= form_for(res, :method => :delete) do |x| %>
+    <%= x.submit "Delete", :class => "inner"%>
+    <% end %>
+    <% end %>
+    <% end %>
+    </ul>
     <br>
     <ul>
     <% if flash[:error] %>
@@ -61,10 +67,8 @@
     <% end %>
     <% end %>
     </ul>
-    
-
-    
- <h3>New reply:<h3>
+        
+<h3>New reply:<h3>
     <%= form_for @response do |f| %>
         <%= f.hidden_field :post_id, :value => params[:id] %>
         <%= f.hidden_field :student_id, :value => current_user.id %>

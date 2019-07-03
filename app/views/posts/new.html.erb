@@ -1,19 +1,22 @@
 <h1>New post</h1>
+<div class = "errors">
 <% if flash[:error] %>
     <% flash[:error].each do |msg| %>
     <li><%= msg %></li>
     <% end %>
     <% end %>
-
+    </div>
+<div class = "form">
 <%= form_for @post do |f| %>
     <div>
     <%= f.hidden_field :course_id, :value => params[:id] %>
-    <%= f.label :title %>
+    <%= f.label "Title:" %>
     <%= f.text_field :title %>
     </div>
     <div>
-    <%= f.label :content %>
+    <%= f.label "Content:" %><br>
     <%= f.text_area :content %>
     </div>
-    <%= f.submit %>
+    <%= f.submit class:"button"%>
     <% end %>
+    </div>

@@ -1,29 +1,39 @@
 <h1>All students</h1>
 <% if current_user.admin %>
     <% @students.each do |x| %>
-    <%= link_to x.name, student_path(x) %>
+        <div>
+   <div class="link", style="font-weight:bold; font-size: 1.2em; display: inline-block; padding: 0.2em;"> <%= link_to x.name, student_path(x) %></div>
 
     <% if x.admin == false %>
+        <div class="form", style="display:inline-block">
         <%= form_tag "/students/#{x.id}/admin", method: :patch do%>
-        <%= submit_tag "Set as admin" %>
+        <%= submit_tag "Set as admin", class: "sub-button"%>
         <% end %>
+        </div>
     <% else %>
+        <div class = "form", style="display:inline-block;">
         <%= form_tag "/students/#{x.id}/unadmin", method: :patch do%>
-        <%= submit_tag "Remove admin" %>
+        <%= submit_tag "Remove admin", class: "sub-button" %>
         <% end %>
+        </div>
     <% end %>
 
     <% if x.banned == false %>
-        <%= form_tag "/students/#{x.id}/ban", method: :patch do %>
-        <%= submit_tag "Ban this student" %>
+        <div class = "form", style="display:inline-block;"><%= form_tag "/students/#{x.id}/ban", method: :patch do %>
+        <%= submit_tag "Ban this student", class: "sub-button" %>
         <% end %>
+        </div>
     <% else %>
+        <div class="form", style="display:inline-block;">
         <%= form_tag "/students/#{x.id}/unban", method: :patch do %>
-        <%= submit_tag "Unban this student" %>
+        <%= submit_tag "Unban this student", class: "sub-button" %>
         <% end %>
+        </div>
     <% end %>
+    
     <% end %>
+    </div>
 
 <% else %>
-    You don't have access to this page.
+   <h3> You don't have access to this page. </h3>
 <% end %>

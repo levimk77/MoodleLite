@@ -1,27 +1,31 @@
  <% if current_user.admin == false %>
-    You don't have access to this page.
+   <h1>You don't have access to this page.</h1>
     <% else %>
-<h1>Creating a new course</h1>
+<h1>Create course</h1>
+<div class "errors">
 <% if flash[:error] %>
     <% flash[:error].each do |msg| %>
     <li><%= msg %></li>
     <% end %>
     <% end %>
+    </div>
+    <div class ="form">
 <%= form_for @course do |f| %>
-    <%= f.label :code %>
+    <%= f.label "Code:" %>
     <%= f.text_field :code %>
-    <%= f.label :name %>
+    <%= f.label "Name:" %>
     <%= f.text_field :name %>
-    <%= f.label :teacher %>
+    <%= f.label "Teacher:" %>
     <%= f.text_field :teacher %>
-    <%= f.label :department %>
+    <%= f.label "Department:" %>
     <%= f.text_field :department %>
-    <%= f.submit %>
+    <%= f.submit "Create course", :class => "button" %>
     <% end %>
+    </div>
 
 <h1>Remove existing courses</h1>
 <%= form_for @course, :method => :delete do |f| %>
-    <%= f.collection_check_boxes :id , @courses , :id, :code %>
-    <%= f.submit "Delete Courses"%>
+   <%= f.collection_select(:id , @courses , :id, :code, {}, {class: 'dropdown'})  %>
+   <%= f.submit "Delete Courses", :class => "button" %>
     <% end %>
     <% end %>

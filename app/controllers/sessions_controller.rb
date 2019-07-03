@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
             session[:student_id] = student.id
             redirect_to student_path(student)
         else
+            flash[:message] = "We cannot find your account based on the information you provided."
             render 'new'
         end
     end

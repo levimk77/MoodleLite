@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   patch "/students/:id/ban", to: "students#banned"
   patch "/students/:id/unban", to: "students#unbanned"
   delete "/courses", to: "courses#destroy"
+  get "/posts/:id1/edit2/:id2", to: "posts#edit2"
+  patch "/posts/:id1/edit2/:id2", to: "posts#update_response"
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
