@@ -24,7 +24,7 @@
     </div>
 
     <% @student.courses.sort_by { |c| c.code }.each do |x| %>
-        <li>
+        <li style="list-style:none;">
             <%= link_to "#{x.code} #{x.name}", course_path(x) %>
             <%= form_tag "/enrollments", method: :delete do%> 
             <%= hidden_field_tag :course_id, :value => x.id %>
