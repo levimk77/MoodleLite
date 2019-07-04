@@ -116,7 +116,7 @@
   .content
   {
       float: left;
-      align-content: center
+      align-content: center;
       position: fixed;
   }
 
