@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :responses, only: [:new, :create, :edit, :update, :destroy] 
   resources :posts, only: [:show, :new, :create, :edit, :update, :destroy] 
-  resources :courses, only: [:new, :create, :update, :destroy]
+  resources :courses, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :students
   
   get "/enrollments/new", to: "enrollments#new"
