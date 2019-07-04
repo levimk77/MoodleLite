@@ -34,10 +34,20 @@ class CoursesController < ApplicationController
     end
 
     def edit
-        @course = Course.find(params[:id])
+        @course = Course.find(params[:course][:id])
+        render :edit
     end
 
     def update
+        @course = Course.find(params[:id])
+        @course.assign_attributes(course_params)
+        if @course.valid?
+            @course.save
+            redirect_to course_path(@course)
+        else
+            flash[:error] = @course.errors.full_messages
+            render :edit
+        end
     end
 
     def destroy

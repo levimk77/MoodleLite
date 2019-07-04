@@ -1,0 +1,25 @@
+<% if current_user.admin == false %>
+   <h1>You don't have access to this page.</h1>
+    <% else %>
+<h1>Edit Course</h1>
+<div class "errors">
+<% if flash[:error] %>
+    <% flash[:error].each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+    <% end %>
+    </div>
+    <div class ="form">
+<%= form_for @course do |f| %>
+    <%= f.label "Code:" %>
+    <%= f.text_field :code %>
+    <%= f.label "Name:" %>
+    <%= f.text_field :name %>
+    <%= f.label "Teacher:" %>
+    <%= f.text_field :teacher %>
+    <%= f.label "Department:" %>
+    <%= f.text_field :department %>
+    <%= f.submit "Edit course", :class => "button" %>
+    <% end %>
+    </div>
+    <% end %>

@@ -23,6 +23,12 @@
     <% end %>
     </div>
 
+<h1>Edit course</h1>
+<%= form_tag("/courses/edit", method: :get) do %>
+   <%= collection_select(:course, :id , Course.all, :id, :code, {}, {class: 'dropdown'})  %>
+   <%= submit_tag "Edit course", :class => "button" %>
+    <% end %>
+
 <h1>Remove existing courses</h1>
 <%= form_for @course, :method => :delete do |f| %>
    <%= f.collection_select(:id , @courses , :id, :code, {}, {class: 'dropdown'})  %>
