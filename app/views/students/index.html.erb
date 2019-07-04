@@ -1,5 +1,24 @@
 <h1>All students</h1>
 <% if current_user.admin %>
+    <div class="errors">
+    <% if flash[:alert] %>
+    <%= flash[:alert] %>
+    <% end %>
+    </div>
+    <br>
+
+    <b>Search:</b><br>
+    <%= form_tag(students_path, method: "get") do %>
+    <%= text_field_tag(:q) %>
+
+    <%= select @student, :year, $years %>
+    
+    <%= select @student, :major, $majors %>
+    <%= submit_tag("Search") %>
+    <% end %>
+    <br>
+
+
     <% @students.each do |x| %>
         <div>
    <div class="link", style="font-weight:bold; font-size: 1.2em; display: inline-block; padding: 0.2em;"> <%= link_to x.name, student_path(x) %></div>

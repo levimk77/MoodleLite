@@ -3,7 +3,16 @@ class StudentsController < ApplicationController
     $years = ["Freshman", "Sohpomore", "Junior", "Senior"]
    
     def index
-        @students = Student.all
+        if params[:q]
+            if Student.find_student(params[:q], params[:year], params[:major]) != []
+                @students = Student.find_student(params[:q], params[:year], params[:major])
+            else
+                flash[:alert] = "student not found"
+                redirect_to '/students'
+            end
+        else
+            @students = Student.all
+        end
     end
 
     def show

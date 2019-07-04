@@ -1,16 +1,21 @@
+  <div class="form", style="display:inline-block">
 <%= form_tag "/courses/#{@post.course_id}", method: :get do %>
 <%= submit_tag "Back to #{@post.course.code}", class: "button" %>
 <% end %>
+</div>
 <% if @post.student == current_user %>
+<div class="form", style="display:inline-block">
 <%= form_tag "/posts/#{@post.id}/edit", method: :get do %>
   <%= submit_tag "Edit Post", class: "button" %>
   <% end %>
+  </div>
 <% end %>
 <% if current_user.admin == true %>
-<div class = "form">
+  <div class="form", style="display:inline-block">
 <%= form_for(@post, :method => :delete) do |x| %>
-  <div class = "button"><%= x.submit "Delete" %></div>
-  <% end %></div>
+  <div><%= x.submit "Delete", :class => "button" %></div>
+  <% end %>
+  </div>
   <% end %>
 <br>
 
@@ -46,7 +51,7 @@
 
     <% if current_user.admin == true %>
       <%= form_for(res, :method => :delete) do |x| %>
-      <%= x.submit "Delete", :class => "inner"%>
+      <%= x.submit "Delete", :class => "sub-button"%>
     <% end %>
   <% end %>
   <% end %>

@@ -1,6 +1,15 @@
 class CoursesController < ApplicationController
     def index
-        @courses = Course.all
+        if params[:q]
+            if Course.find_course(params[:q]) != []
+                @courses = Course.find_course(params[:q])
+            else
+                flash[:alert] = "course not found"
+                redirect_to '/courses'
+            end
+        else
+            @courses = Course.all
+        end
     end
 
     def show

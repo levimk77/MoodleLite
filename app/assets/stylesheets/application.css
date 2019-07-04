@@ -65,24 +65,6 @@
     font-family: Arial;
  }
 
- .sub-button2
- {
-    background-color: #A9A9A9;
-    border: 1px solid #A9A9A9;
-    border-radius: 6px;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline;
-    font-size: 10px;
-    font: helvetica;
-    font-weight: bold;
-    margin: 3px 1px;
-    cursor: pointer;
-    font-family: Arial;
- }
-
 
  .form
  {
@@ -153,12 +135,11 @@
       .box2 {
         border: 1px solid grey;
         padding: 1.1rem;
-        padding-top: 0.5em;
         width: auto;
         margin: 16px 16px 16px 16px;
         display: inline-block;
         vertical-align: top;
-        position: relative;
+        position: absolute;
         float: left;
         }
 
@@ -167,7 +148,7 @@
         border: 1px solid grey;
         padding: 1.1rem;
         padding-top: 0.5em;
-        width: 15em;
+        width: 16em;
         margin: 16px 16px 16px 16px;
         display: inline-block;
         vertical-align: top;
@@ -177,7 +158,6 @@
 
       .box4 {
         border: 1px solid grey;
-
         padding: 1.1rem;
         padding-top: 0.5em;
         width: auto;
@@ -187,17 +167,26 @@
         position: relative;
         float: left;
         }
+
     .login {
-        border: 1px solid grey;
+      border: 1px solid grey;
       padding: 1.1rem;
       padding-top: 0.5em;
       width: 10em;
       margin: 16px 16px 16px 16px;
       display: inline-block;      
       position: relative;
-      position: fixed;
-      top: 30%;
-      left: 30%;
+    
+      top: 27%;
+      left: 38%;
+    }
+
+    .loginh1
+    {
+     font-size: 5em;
+     text-align: center;
+      position: relative;
+  
     }
 
   .profile {
@@ -205,14 +194,8 @@
       position: relative;
   }
 
-  .abc {
-    position: absolute;
-  }
-
   .dropdown {
-      padding: 10em;
-      font-size: 70em;
-      color: red;
+      font-size: 1.1em;
   }
 
   .errors {
