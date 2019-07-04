@@ -41,12 +41,8 @@ class CoursesController < ApplicationController
     end
 
     def destroy
-        params[:course][:id].each do |x|
-            if x!= "" 
-             Course.find(x.to_i).enrollments.destroy_all
-             Course.find(x.to_i).destroy
-            end
-        end
+        @course = Course.find(params:id)
+        @course.destroy
         redirect_to new_course_path
     end
 
