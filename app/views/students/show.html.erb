@@ -39,21 +39,18 @@
 
 <div class ="boxes">
 <div class = "box3">
-<h3>Posts</h3>
+    <h3>Posts</h3>
 
-<% @student.posts.sort_by{|post| post.created_at }.each do |x| %>
-<li style = "list-style: none; font-size 1.0em; padding: 1px;"><%= link_to x.title, post_path(x) %></li>
-<% end %>
-
+    <% @student.posts.sort_by{|post| post.created_at }.each do |x| %>
+    <li style = "list-style: none; font-size 1.0em; padding: 1px;"><%= link_to x.title, post_path(x) %></li>
+    <% end %>
+    <br>
+    <h3>Responses</h3>
+    <% @student.responses.sort_by{|response| response.created_at }.each do |x| %>
+    <li style = "list-style-type: circle; padding: 2px;">Replied to <%= link_to x.post.title, post_path(x.post) %>: <%= x.content %></li>
+    <% end %>
 </div>
 
-
-<div class = "box4">
-<h3>Responses</h3>
-<% @student.responses.sort_by{|response| response.created_at }.each do |x| %>
-<li style = "list-style-type: circle; padding: 2px;">Replied to <%= link_to x.post.title, post_path(x.post) %>: <%= x.content %></li>
-<% end %>
-</div>
 </div>
 
 </div>
