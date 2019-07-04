@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :responses, only: [:new, :create, :edit, :update, :destroy] 
   resources :posts, only: [:show, :new, :create, :edit, :update, :destroy] 
-  resources :courses, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :courses, only: [:index, :show, :new, :create, :update, :destroy]
   resources :students
   
   get "/enrollments/new", to: "enrollments#new"
@@ -24,11 +24,7 @@ Rails.application.routes.draw do
   patch "/students/:id/ban", to: "students#banned"
   patch "/students/:id/unban", to: "students#unbanned"
   
-  get "/courses/edit", to: "courses#edit"
-  get "/courses/:id", to: "courses#show"
-  delete "/courses", to: "courses#destroy"
-  
-  
+  get "/courses/edit", to: "courses#edit"  
 
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
