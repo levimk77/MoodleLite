@@ -9,11 +9,12 @@
 <% if current_user.admin == true %>
 <div class = "form">
 <%= form_for(@post, :method => :delete) do |x| %>
-  <div class = "button"><%= x.submit "Delete" %></div>
+  <%= x.submit "Delete", :class => "button" %>
   <% end %></div>
   <% end %>
 <br>
 <h1><%= @post.title %></h1>
+
 <% if @post.student != nil %>
 <p><b>Author</b>: <%= @post.student.name %><p>
 <% else %>
@@ -22,6 +23,18 @@
 <p><b>Created at</b>: <%= @post.created_at %></p>
 <p><b>Content</b>:<br> <%= @post.content %></p><br>
 <h3><b>Replies</b></h3>
+
+
+<div class="errors">
+    <% if flash[:error] %>
+    <% flash[:error].each do |msg| %>
+    <%= msg %>
+    <% end %>
+    <% end %>
+    </div>
+    
+
+
 <ul>
 <% if @post.responses != nil %>
   <% @post.responses.each do |res| %>
@@ -44,36 +57,23 @@
     <% else %>
 
     <%= res.content %> </li>
-    <br>
     <% if res.student == current_user %>
     <%= form_tag "/posts/#{@post.id}/edit", method: :get do %>
     <%= submit_tag "Edit Reply", class: "sub-button" %>
     <% end %>
     <% end %>
-
+<br>
     <% end %>
-<% if current_user.admin == true %>
-    <%= form_for(res, :method => :delete) do |x| %>
-    <%= x.submit "Delete", :class => "inner"%>
-    <% end %>
-    <% end %>
+  <%# if current_user.admin == true %>
+    <%#= form_for(res, :method => :delete) do |x| %>
+    <%#= x.submit "Delete", :class => "inner"%>
+    <%# end %>
+    <%# end %>
     <% end %>
     </ul>
     <br>
-    <ul>
-    <% if flash[:error] %>
-    <% flash[:error].each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-    <% end %>
-    </ul>
+    
         
-<h3>New reply:<h3>
-    <%= form_for @response do |f| %>
-        <%= f.hidden_field :post_id, :value => params[:id] %>
-        <%= f.hidden_field :student_id, :value => current_user.id %>
-        <%= f.text_area :content %>
-        <%= f.submit "Reply", class:"button" %>
-        <% end %>
+
   <% end %>
     

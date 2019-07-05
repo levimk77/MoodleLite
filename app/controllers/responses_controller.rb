@@ -25,6 +25,15 @@ class ResponsesController < ApplicationController
     end
 
     def update
+        @response = Response.find(params[:id])
+        @response.assign_attributes(response_params)
+        if @response.valid?
+            @response.save
+            redirect_to post_path(@response.post)
+        else
+            flash[:error] = @response.errors.full_messages
+            render :edit2
+        end
     end
 
     def destroy

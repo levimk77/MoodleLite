@@ -41,19 +41,20 @@
     <% end %>
     <br>
     <%= res.content %> </li>
-    <br>
+
     <% if res.student == current_user %>
     <%= form_tag "/posts/#{@post.id}/edit2/#{res.id}", method: :get do %>
-  <%= submit_tag "Edit Reply", class: "sub-button" %>
-  <% end %>
-<% end %>
+    <%= submit_tag "Edit Reply", class: "button" %>
+      <% end %>
+    <% end %>
   
 
     <% if current_user.admin == true %>
       <%= form_for(res, :method => :delete) do |x| %>
-      <%= x.submit "Delete", :class => "sub-button"%>
+      <%= x.submit "Delete", class: "button"%>
     <% end %>
-  <% end %>
+    <% end %>
+    <br>
   <% end %>
   </ul>
 

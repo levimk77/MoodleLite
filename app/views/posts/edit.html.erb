@@ -9,7 +9,7 @@
 <% if current_user.admin == true %>
 <div class = "form">
 <%= form_for(@post, :method => :delete) do |x| %>
-  <div class = "button"><%= x.submit "Delete" %></div>
+  <%= x.submit "Delete", :class => "button" %>
   <% end %></div>
   <% end %>
 <br>
@@ -53,7 +53,7 @@
 
     <% if current_user.admin == true %>
       <%= form_for(res, :method => :delete) do |x| %>
-      <%= x.submit "Delete", :class => "inner"%>
+      <%= x.submit "Delete", :class => "button"%>
     <% end %>
   <% end %>
   <% end %>
@@ -61,13 +61,14 @@
 
 
     <br>
-    <ul>
+    
+    <div class="errors">
     <% if flash[:error] %>
     <% flash[:error].each do |msg| %>
-    <li><%= msg %></li>
+    <%= msg %>
     <% end %>
     <% end %>
-    </ul>
+    </div>
     
 
     
