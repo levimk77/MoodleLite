@@ -94,6 +94,7 @@ width: 100%
 body {
     font-family: Roboto, Arial, sans-serif;
     background-color: #FDF6E4;
+    margin: 0;
 }
 
 h1 {
@@ -258,4 +259,8 @@ html {
 
 .errors {
   color: red;
+}
+
+.field_with_errors {
+  display: inline-block;
 }

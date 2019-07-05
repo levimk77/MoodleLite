@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html>
-<div class = "nav">
-<% if logged_in? %>
+<head>
+    <title>MoodleLite</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <% if current_user.banned == true %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<body>
+
+<% if logged_in? && current_user.banned %>
     <h1>You are banned</h1>
+
+
+<% else %>
+
+  <% if logged_in? %>
+    <div class = "nav">
+
   
-  <% else %>
+  
     <div class ="inner">
       <%= form_tag "/students/#{current_user.id}", method: :GET do %>
       <%= submit_tag "Home", class: "inner"%>
@@ -35,26 +50,21 @@
         <%= submit_tag "Edit courses", class: "inner" %>
         <% end %>
         </div>
-    <% end %>
-
+    
+<% end %>
 </div>
-
-        <body>
-    <%= yield %>
-  </body>
-  <% end %>
 <% end %>
 
 
+   <%= yield %>
+  <% end %>
+ 
+  </body>
 
-  <head>
-    <title>MoodleLite</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+
+
+  
 
   
 </html>
