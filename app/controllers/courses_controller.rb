@@ -51,7 +51,6 @@ class CoursesController < ApplicationController
     end
 
     def destroy
-        byebug
         @course = Course.find(params[:course][:id].to_i)
         @course.destroy
         redirect_to new_course_path

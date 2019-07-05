@@ -8,6 +8,7 @@ class Student < ApplicationRecord
 
     validates :name, :age, :email, :year, :major, presence: true
     validates :email, uniqueness: true
+    validates :age, numericality: { greater_than: 15}
     
     def self.find_student(student, year, major)
         students = []

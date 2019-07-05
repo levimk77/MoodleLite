@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   patch "/students/:id/unban", to: "students#unbanned"
   
   get "/courses/edit", to: "courses#edit"  
-
+  delete "/courses", to: "courses#destroy"
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

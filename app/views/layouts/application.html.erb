@@ -1,32 +1,52 @@
 <!DOCTYPE html>
 <html>
-<div class = "topbar">
+<div class = "nav">
 <% if logged_in? %>
+
   <% if current_user.banned == true %>
     <h1>You are banned</h1>
+  
   <% else %>
-    <div class ="inner"><%= form_tag "/students/#{current_user.id}", method: :GET do %>
-    <%= submit_tag "Home", class: "inner"%>
-    <% end %></div>
-    <div class ="inner"><%= form_tag "/students/#{current_user.id}/edit", method: :GET do %>
-    <%= submit_tag "Settings", class: "inner" %>
-    <% end %></div>
-    <div class ="inner"><%= form_tag "/logout", method: :delete do %>
-    <%= submit_tag "Logout", class: "inner"%>
-    <% end %></div>
+    <div class ="inner">
+      <%= form_tag "/students/#{current_user.id}", method: :GET do %>
+      <%= submit_tag "Home", class: "inner"%>
+      <% end %>
+    </div>
+    <div class ="inner">
+      <%= form_tag "/students/#{current_user.id}/edit", method: :GET do %>
+      <%= submit_tag "Settings", class: "inner" %>
+      <% end %>
+    </div>
+    <div class ="inner">
+      <%= form_tag "/logout", method: :delete do %>
+      <%= submit_tag "Logout", class: "inner"%>
+      <% end %>
+    </div>
 
-      <% if current_user.admin == true %>
-      <div class ="inner"><%= form_tag "/students", method: :get do %>
+    <% if current_user.admin == true %>
+      <div class ="inner">
+        <%= form_tag "/students", method: :get do %>
         <%= submit_tag "See all students", class: "inner"%>
-        <% end %></div>
-        
-        <div class ="inner"><%= form_tag "/courses/new", method: :get do %>
-        <%= submit_tag "Edit courses", class: "inner" %>
-        <% end %></div>
         <% end %>
+        </div>
+        
+      <div class ="inner">
+        <%= form_tag "/courses/new", method: :get do %>
+        <%= submit_tag "Edit courses", class: "inner" %>
+        <% end %>
+        </div>
+    <% end %>
+
+</div>
+
+        <body>
+    <%= yield %>
+  </body>
   <% end %>
 <% end %>
-</div>
+
+
+
   <head>
     <title>MoodleLite</title>
     <%= csrf_meta_tags %>
@@ -36,7 +56,5 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  
 </html>

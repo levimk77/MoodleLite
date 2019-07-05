@@ -27,7 +27,7 @@
         <li style="list-style:none;">
             <%= link_to "#{x.code} #{x.name}", course_path(x) %>
             <%= form_tag "/enrollments", method: :delete do%> 
-            <%= hidden_field_tag :course_id, :value => x.id %>
+            <%= hidden_field_tag :course_id, x.id %>
             <%= submit_tag "Remove", class:"sub-button" %>
             <% end %>
         </li>

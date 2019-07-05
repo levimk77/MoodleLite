@@ -14,190 +14,248 @@
  *= require_self
  */
 
-
- 
- .grid-container {
-     display: inline-grid;
- }
+.grid-container {
+  display: inline-grid;
+}
 
 .boxes 
 {
-    display: block;
-    width: 1200px;
+  display: block;
+  width: 1200px;
 }
-.boxes2 
-{
-   width: 100%
+.boxes2 {
+width: 100%
 }
+
 .button
- {
-    display: inline-block;
-    background-color: #A9A9A9;
-    border: 2px solid #A9A9A9;
-    border-radius: 6px;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    font: helvetica;
+{
+  display: inline-block;
+  background-color: #A9A9A9;
+  border: 2px solid #A9A9A9;
+  border-radius: 6px;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  font: helvetica;
+  font-weight: bold;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-family: Arial;
+}
+
+.sub-button
+{
+  background-color: #A9A9A9;
+  border: 1px solid #A9A9A9;
+  border-radius: 6px;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  font: helvetica;
+  font-weight: bold;
+  margin: 3px 1px;
+  cursor: pointer;
+  font-family: Arial;
+}
+
+
+.form
+{
+  display: inline-block;
+}
+
+.inner {
+  background-color: RGB(95, 95, 95);
+  border: 2px solid RGB(95, 95, 95);
+  border-radius: 6px;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font: helvetica;
+  margin: 2px 2px;
+  cursor: pointer;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.nav {
+  background-color: RGB(95, 95, 95);
+}
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    background-color: #FDF6E4;
+}
+
+h1 {
     font-weight: bold;
-    margin: 4px 2px;
-    cursor: pointer;
-    font-family: Arial;
- }
- .sub-button
- {
-    background-color: #A9A9A9;
-    border: 1px solid #A9A9A9;
-    border-radius: 6px;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+p {
+    font-size: 1.0em;
+}
+
+li {
+    font-size: 1.0em;
+}
+.content
+{
+    float: left;
+    align-content: center;
+    position: fixed;
+}
+
+.box1 {
+border: 1px solid grey;
+padding: 1.1rem;
+padding-top: 0.5em;
+width: 16em;
+margin: 16px 16px 16px 16px;
+display: inline-block;
+vertical-align: top;
+position: relative;
+float: left;
+}
+
+.box2 {
+  border: 1px solid grey;
+  padding: 1.1rem;
+  width: auto;
+  margin: 16px 16px 16px 16px;
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  float: left;
+  }
+
+
+.box3 {
+  border: 1px solid grey;
+  padding: 1.1rem;
+  padding-top: 0.5em;
+  width: 16em;
+  margin: 16px 16px 16px 16px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  float: left;
+  }
+
+.box4 {
+  border: 1px solid grey;
+  padding: 1.1rem;
+  padding-top: 0.5em;
+  width: auto;
+  margin: 16px 16px 16px 16px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  float: left;
+  }
+
+.loginbox {
+  border: 2px solid grey;
+  background:rgba(255,255,255,0.5);
+  padding: 3.0em;
+  width: 20em;
+  height: 25em;
+  margin: 16px 16px 16px 16px;
+  display: inline-block;      
+  position: relative;
+  top: 27%;
+  left: 38%;
+  box-sizing: border-box;
+  border-radius: 0.6em;
+  line-height: 180%;
+}
+
+.signupbox {
+  border: 2px solid grey;
+  background:rgba(255,255,255,0.5);
+  padding: 3.0em;
+  width: 25em;
+  height: 25em;
+  margin: 16px 16px 16px 16px;
+  display: inline-block;      
+  position: relative;
+  top: 27%;
+  left: 38%;
+  box-sizing: border-box;
+  border-radius: 0.6em;
+  line-height: 180%;
+}
+
+.loginbox input {
+  margin-botton: 20px;
+}
+
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], select{
+  border: none;
+  border-bottom: 2px solid grey;
+  background: transparent;
+  font-size: 0.8em;
+  height: 1.5em;
+  font-style: italic;
+}
+
+input[type="number"]{
+  width: 5em;
+}
+
+input[type="email"]{
+  width: 15em;
+}
+
+.avatar {
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  position: absolute;
+  top: -2em;
+  left: calc(50% - 2em)
+}
+
+.loginh1
+{
+  font-size: 5em;
+  text-align: center;
+  position: relative;
+}
+
+.loginpage {
+  background-image: url("https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-03.jpg");
+  height: 700px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0px;
+}
+
+html {
+  height: 100%;
+}
+
+.profile {
     display: inline-block;
-    font-size: 10px;
-    font: helvetica;
-    font-weight: bold;
-    margin: 3px 1px;
-    cursor: pointer;
-    font-family: Arial;
- }
+    position: relative;
+}
 
+.dropdown {
+    font-size: 1.1em;
+}
 
- .form
- {
-    display: inline-block;
- }
-
- .inner {
-    background-color: RGB(95, 95, 95);
-    border: 2px solid RGB(95, 95, 95);
-    border-radius: 6px;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    font: helvetica;
-    margin: 2px 2px;
-    cursor: pointer;
-    font-family: Arial;
-    font-weight: bold;
-  }
-
-  .topbar
-  {
-    background-color: RGB(95, 95, 95);
-  }
-
-  body {
-      font-family: Roboto, Arial, sans-serif;
-      background-color: #FDF6E4;
-  }
-
-  h1 {
-      font-weight: bold;
-  }
-
-  h3 {
-      font-size: 1.2em;
-  }
-
-  p {
-      font-size: 1.0em;
-  }
-
-  li {
-      font-size: 1.0em;
-  }
-  .content
-  {
-      float: left;
-      align-content: center;
-      position: fixed;
-  }
-
-  .box1 {
-      border: 1px solid grey;
-      padding: 1.1rem;
-      padding-top: 0.5em;
-      width: 16em;
-      margin: 16px 16px 16px 16px;
-      display: inline-block;
-      vertical-align: top;
-      position: relative;
-      float: left;
-      }
-
-      .box2 {
-        border: 1px solid grey;
-        padding: 1.1rem;
-        width: auto;
-        margin: 16px 16px 16px 16px;
-        display: inline-block;
-        vertical-align: top;
-        position: absolute;
-        float: left;
-        }
-
-
-      .box3 {
-        border: 1px solid grey;
-        padding: 1.1rem;
-        padding-top: 0.5em;
-        width: 16em;
-        margin: 16px 16px 16px 16px;
-        display: inline-block;
-        vertical-align: top;
-        position: relative;
-        float: left;
-        }
-
-      .box4 {
-        border: 1px solid grey;
-        padding: 1.1rem;
-        padding-top: 0.5em;
-        width: auto;
-        margin: 16px 16px 16px 16px;
-        display: inline-block;
-        vertical-align: top;
-        position: relative;
-        float: left;
-        }
-
-    .login {
-      border: 1px solid grey;
-      padding: 1.1rem;
-      padding-top: 0.5em;
-      width: 10em;
-      margin: 16px 16px 16px 16px;
-      display: inline-block;      
-      position: relative;
-    
-      top: 27%;
-      left: 38%;
-    }
-
-    .loginh1
-    {
-     font-size: 5em;
-     text-align: center;
-      position: relative;
-  
-    }
-
-  .profile {
-      display: inline-block;
-      position: relative;
-  }
-
-  .dropdown {
-      font-size: 1.1em;
-  }
-
-  .errors {
-    color: red;
-  }
+.errors {
+  color: red;
+}

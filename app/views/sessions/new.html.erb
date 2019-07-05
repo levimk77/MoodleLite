@@ -1,28 +1,40 @@
-<div class="errors">
-<% if flash[:message] %>
-<%= flash[:message] %>
-<% end %>
-</div>
-<h1 class = "loginh1">Welcome to MoodleLite!</h1>
+<div class="loginpage">
 
 
+<br>
+<div class="loginh1">Welcome to MoodleLite!</div>
+<br>
+
+
+<br><br>
 <% if logged_in? %>
 <h1> You are already logged in! <h1>
 <% else %>
-<div class = "login">
+<div class = "loginbox">
+<img src="https://image.flaticon.com/icons/png/512/64/64572.png" class="avatar">
+<div class="errors" style="text-align: center;">
+        <% if flash[:message] %>
+        <%= flash[:message] %>
+        <% end %>
+    </div>
 <%= form_tag "/sessions" do %>
-    <%= label_tag "Email:" %>
-    <%= text_field_tag :email %>
-    <%= label_tag "Password:" %>
-    <%= password_field_tag :password %>
+    <%= label_tag "Email" %><br>
+    <%= text_field_tag :email, nil, placeholder: "Enter email address" %><br>
+    <br>
+    <%= label_tag "Password" %><br>
+    <%= password_field_tag :password, nil, placeholder: "Enter password" %><br>
     <%= submit_tag "Log in", class: "button" %>
     <% end %>
+    <br>
     
-    
-    <div class = "form">
+    <div class = "form", style="display: inline-block">
     <%= form_tag "/signup", method: :get do %>
+        <%= label_tag "New user?" %>
         <%= submit_tag "Sign Up", class: "button" %>
     <% end %>
     </div>
     <% end %>
-    </div>
+
+</div>
+
+</div>

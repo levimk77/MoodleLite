@@ -1,3 +1,7 @@
+<div class="loginpage">
+<br>
+<div class="loginh1">Sign up for MoodleLite</div>
+<br><br>
 <% if flash[:error] %>
 <div class="errors">
 <ul>
@@ -9,23 +13,26 @@
     <% end %>
 
 <br>
-<div class = "form">
+<div class = "signupbox">
+<img src="https://image.flaticon.com/icons/png/512/64/64572.png" class="avatar">
+
 <%= form_for(@student) do |x| %>
     <%= x.label "Name:" %>
-    <%= x.text_field :name %>
+    <%= x.text_field :name %><br>
     <%= x.label "Age:" %>
-    <%= x.number_field :age %>
+    <%= x.number_field :age %><br>
     <%= x.label "Email:" %>
-    <%= x.email_field :email %>
+    <%= x.email_field :email, placeholder: "name@company.com" %><br>
     <%= x.label "Grade:" %>
-    <%= x.select :year, $years %>
+    <%= x.select :year, $years %><br>
     <%= x.label "Major:" %>
-    <%= x.select :major, $majors %>
-    <br>
+    <%= x.select :major, $majors %><br>
     <%= x.label "Password:" %>
-    <%= x.password_field :password %>
+    <%= x.password_field :password, placeholder: "Enter new password"%><br>
     <%= x.label "Confirm Password:" %>
-    <%= x.password_field :password_confirmation %>
+    <%= x.password_field :password_confirmation, placeholder: "Enter new password again" %>
    <%= submit_tag "Sign Up", class: "button" %>
 <% end %>
+</div>
+
 </div>

@@ -12,13 +12,13 @@
     <div class ="form">
 <%= form_for @course do |f| %>
     <%= f.label "Code:" %>
-    <%= f.text_field :code %>
+    <%= f.text_field :code, placeholder: "Enter course code" %>
     <%= f.label "Name:" %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: "Enter course name" %>
     <%= f.label "Teacher:" %>
-    <%= f.text_field :teacher %>
+    <%= f.text_field :teacher, placeholder: "Enter teacher name" %>
     <%= f.label "Department:" %>
-    <%= f.text_field :department %>
+    <%= f.text_field :department, placeholder: "Enter department name" %>
     <%= f.submit "Create course", :class => "button" %>
     <% end %>
     </div>
@@ -30,7 +30,7 @@
     <% end %>
 
 <h1>Remove existing courses</h1>
-<%= form_for @course, :method => :delete do |f| %>
+<%= form_for(@course, :method => :delete, :remote => true) do |f| %>
    <%= f.collection_select(:id , @courses , :id, :code, {}, {class: 'dropdown'})  %>
    <%= f.submit "Delete Courses", :class => "button" %>
     <% end %>

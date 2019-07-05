@@ -1,5 +1,5 @@
-<h1>All students</h1>
 <% if current_user.admin %>
+<br>
     <div class="errors">
     <% if flash[:alert] %>
     <%= flash[:alert] %>
@@ -9,15 +9,15 @@
 
     <b>Search:</b><br>
     <%= form_tag(students_path, method: "get") do %>
-    <%= text_field_tag(:q) %>
+    <%= text_field_tag :q, nil, placeholder: "Enter student name" %>
 
     <%= select @student, :year, $years %>
     
     <%= select @student, :major, $majors %>
-    <%= submit_tag("Search") %>
+    <%= submit_tag "Search", class: "sub-button" %>
     <% end %>
     <br>
-
+    <h1>All students</h1>
 
     <% @students.each do |x| %>
         <div>

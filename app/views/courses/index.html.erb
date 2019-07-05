@@ -9,16 +9,17 @@
 
 <b>Search:</b><br>
 <%= form_tag(courses_path, method: "get") do %>
-<%= text_field_tag(:q) %>
-<%= submit_tag("Search") %>
+<%= text_field_tag :q, nil, placeholder: "course code/name" %>
+<%= submit_tag "Search", class: "sub-button" %>
 <% end %>
 <br>
 
 <% @courses.sort_by {|x| x.code}.each do |course| %>
     <div class = "link" style= "padding: 2px;"><%= link_to "#{course.code} #{course.name}", course_path(course) %></div>
     <% if !current_user.courses.include?(course) %>
-        <%= form_tag "/enrollments", method: :post %>
-        <%= hidden_field_tag :course_id, :value => course.id %>
-        <%= submit_tag "Add to my courses", class: "button" %>
+        <%= form_tag "/enrollments", method: :post do %>
+        <%= hidden_field_tag :course_id, course.id %>
+        <%= submit_tag "Add to my courses", class: "sub-button" %>
         <% end %>
     <% end %>
+<% end %>
